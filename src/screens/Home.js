@@ -68,7 +68,6 @@ function Home() {
           className="poster_fade"
           style={{
             display: "flex",
-            //   height: 200,
           }}
         ></div>
         <div className="poster_detail_container">
@@ -109,10 +108,14 @@ function Home() {
           ) : null}
           <a
             className="poster_overview"
-            style={{ fontSize: width < 1000 ? width / 50 : 20 }}
+            style={{
+              fontSize: width < 1000 ? width / 60 : 18,
+              textShadow: "3px 3px 3px black",
+            }}
           >
             {poster.overview}
           </a>
+          <div className="buttons_container"></div>
         </div>
       </div>
 
