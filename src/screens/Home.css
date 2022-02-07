@@ -1,0 +1,67 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.poster_name {
+  font-family: "Staatliches";
+  color: white;
+  font-size: 40px;
+}
+
+.poster_container {
+  width: 100vw;
+  height: calc(100vw * 9 / 16);
+  background-color: #202020;
+}
+
+.poster_detail_container {
+  position: relative;
+  bottom: calc(100vw / 1.8);
+  display: flex;
+  left: calc(100vw / 40);
+  backdrop-filter: blur(10px);
+  max-width: calc(100vw / 3);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  align-items: flex-start;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.poster_fade {
+  width: calc(100vw);
+  height: calc(100vw / 5);
+  background-image: linear-gradient(transparent, #0b0b0b);
+  position: relative;
+  /* top: calc((100vw * 9 / 16) - (100vw / 5)); */
+  bottom: calc(100vw / 5);
+}
+
+.poster_fade_left {
+  width: calc(100vw / 3);
+  height: calc(100vw * 9 / 16);
+  background-image: linear-gradient(to right, #0b0b0b, transparent);
+  position: absolute;
+  top: 0px;
+}
+
+.poster_overview {
+  color: white;
+  font-family: Quicksand;
+  text-align: left;
+  /* margin-top: calc(100vw / 100); */
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}

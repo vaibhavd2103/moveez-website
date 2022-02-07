@@ -1,0 +1,71 @@
+.top_tab_container {
+  width: calc(100% - 20px);
+  max-height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  position: absolute;
+  overflow: hidden;
+  background-image: linear-gradient(#0b0b0b, #0b0b0baa, transparent);
+  z-index: 10;
+  /* background-color: grey; */
+}
+
+.logo {
+  width: calc(100vw / 5);
+  object-fit: cover;
+  min-height: 30px;
+  max-width: 150px;
+  max-height: 70px;
+  min-width: 70px;
+}
+
+.category_container {
+  display: flex;
+  align-items: center;
+}
+
+.category_name {
+  font-family: Quicksand;
+  font-weight: 800;
+  color: white;
+  padding-left: 5px;
+  margin-left: calc(100vw / 50);
+  cursor: pointer;
+}
+.category_icon {
+  margin-left: calc(100vw / 40);
+  cursor: pointer;
+}
+
+.search_profile_box {
+  display: flex;
+  position: absolute;
+  right: 20px;
+  align-items: center;
+}
+
+.profile_hover_container {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 250px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 10px;
+  top: 70px;
+}
+
+.profile_setting_div {
+  width: 190px;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  height: 50px;
+  padding-left: 10px;
+}
+
+.profile_setting_name {
+  font-family: Quicksand;
+  color: white;
+}
