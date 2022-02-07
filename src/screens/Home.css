@@ -28,9 +28,9 @@
   bottom: calc(100vw / 1.5);
   display: flex;
   left: calc(100vw / 40);
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
   max-width: calc(100vw / 3);
-  background-color: rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(0, 0, 0, 0.1); */
   border-radius: 20px;
   align-items: flex-start;
   padding: 20px;
@@ -63,4 +63,10 @@
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+}
+
+.buttons_container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
 }

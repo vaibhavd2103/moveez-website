@@ -5,12 +5,14 @@ import TopTab from "../components/TopTab";
 import { Colors, imageUrl, useWindowDimensions } from "../constants/constants";
 import "./Home.css";
 import analyze from "rgbaster";
+import Category from "../components/Category";
+import { FaPlay } from "react-icons/fa";
 
 function Home() {
   const { width, height } = useWindowDimensions();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [avgColor, setAvgColor] = useState("");
+  const [avgColor, setAvgColor] = useState("white");
   const [id, setId] = useState(Math.floor(Math.random() * 20));
   const [poster, setPoster] = useState({});
   const [images, setImages] = useState([]);
@@ -30,7 +32,7 @@ function Home() {
       console.log(posterImages.data);
       console.log(poster.data);
 
-      setLogo(posterImages.data.logos[0]);
+      setLogo(posterImages.data.logos[1]);
       setMovies(movies.data.results);
       setPoster(movies.data.results[id]);
       setLoading(false);
@@ -110,26 +112,39 @@ function Home() {
             className="poster_overview"
             style={{
               fontSize: width < 1000 ? width / 60 : 18,
-              textShadow: "3px 3px 3px black",
+              textShadow: "2px 2px 3px black",
             }}
           >
             {poster.overview}
           </a>
-          <div className="buttons_container"></div>
+          <div className="buttons_container">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                padding: width / 120,
+                borderRadius: 10,
+                backgroundColor: avgColor,
+                paddingInline: width / 60,
+              }}
+            >
+              <FaPlay />
+              <a
+                style={{
+                  fontFamily: "Quicksand",
+                  fontSize: width < 1000 ? width / 60 : 18,
+                  fontWeight: "bold",
+                  marginLeft: 10,
+                }}
+              >
+                Play
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-
-      <h1>walla</h1>
-      <h1>walla</h1>
-      <h1>walla</h1>
-      <h1>walla</h1>
-      <h1>walla</h1>
-      <h1>walla</h1>
-      <h1>walla</h1>
-      <h1>walla</h1>
-      <h1>walla</h1>
-      <h1>walla</h1>
-      <h1>walla</h1>
+      <Category fetchUrl={requests.fetchTrending} title="Trending" />
+      <Category fetchUrl={requests.fetchTrending} title="Trending" />
     </div>
   );
 }
