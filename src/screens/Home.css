@@ -14,7 +14,6 @@
 .poster_name {
   font-family: "Staatliches";
   color: white;
-  font-size: 40px;
 }
 
 .poster_container {
@@ -28,9 +27,9 @@
   bottom: calc(100vw / 1.5);
   display: flex;
   left: calc(100vw / 40);
-  /* backdrop-filter: blur(10px); */
+  backdrop-filter: blur(2px);
   max-width: calc(100vw / 3);
-  /* background-color: rgba(0, 0, 0, 0.1); */
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 20px;
   align-items: flex-start;
   padding: 20px;

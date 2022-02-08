@@ -9,7 +9,7 @@
   flex-direction: row;
   overflow-x: scroll;
   overflow-y: hidden;
-  background-color: #0b0b0b;
+  /* background-color: #0b0b0b; */
 }
 
 .category_title {
@@ -18,14 +18,36 @@
   text-align: left;
 }
 
+.movie_poster_div {
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  transition: 250ms;
+  margin: 5px;
+}
+
+.movie_poster_div :hover {
+  transition: transform 250ms;
+  transform: scale(1.2, 1.2);
+  transform: translateZ(100);
+  /* z-index: 555555 !important; */
+}
+
+.category_poster_image {
+  width: calc(100vw / 8);
+  object-fit: contain;
+  max-width: 200px;
+  min-width: 100px;
+  border-radius: 5px;
+}
+
 .movie_div {
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: transform 200ms;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  transition: 250ms;
   margin: 5px;
 }
 
 .movie_div :hover {
-  transform: scale(1.2);
+  transition: transform 250ms;
+  transform: scale(1.5);
 }
 
 .category_image {

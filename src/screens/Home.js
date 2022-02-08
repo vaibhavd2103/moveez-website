@@ -7,6 +7,7 @@ import "./Home.css";
 import analyze from "rgbaster";
 import Category from "../components/Category";
 import { FaPlay } from "react-icons/fa";
+import { FiInfo } from "react-icons/fi";
 
 function Home() {
   const { width, height } = useWindowDimensions();
@@ -17,6 +18,21 @@ function Home() {
   const [poster, setPoster] = useState({});
   const [images, setImages] = useState([]);
   const [logo, setLogo] = useState("");
+
+  const [header, setHeader] = useState(
+    "linear-gradient(#0b0b0b, #0b0b0baa, transparent)"
+  );
+  const listenScrollEvent = (event) => {
+    if (window.scrollY < 400) {
+      return setHeader("linear-gradient(#0b0b0b, #0b0b0baa, transparent)");
+    } else if (window.scrollY > 350) {
+      return setHeader("rgba(0,0,0,0.5)");
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", listenScrollEvent);
+    return () => window.removeEventListener("scroll", listenScrollEvent);
+  }, []);
 
   useEffect(() => {
     setId(Math.floor(Math.random() * 20));
@@ -29,10 +45,10 @@ function Home() {
       const posterImages = await instance.get(
         `/movie/${movies.data.results[id].id}/images?api_key=${API_KEY}`
       );
-      console.log(posterImages.data);
-      console.log(poster.data);
+      //  console.log(posterImages.data);
+      //  console.log(poster.data);
 
-      setLogo(posterImages.data.logos[1]);
+      setLogo(posterImages.data.logos[0]);
       setMovies(movies.data.results);
       setPoster(movies.data.results[id]);
       setLoading(false);
@@ -59,7 +75,7 @@ function Home() {
           Loading
         </h1>
       )}
-      <TopTab />
+      <TopTab headerColor={header} />
       <div className="poster_container">
         {/* <div className="poster_fade_left"></div> */}
         <img
@@ -79,7 +95,7 @@ function Home() {
               style={{
                 width: width / 3 - 30,
                 objectFit: "contain",
-                //  maxHeight: width / 7,
+                maxHeight: width / 3 / 5,
               }}
             />
           ) : (
@@ -89,6 +105,7 @@ function Home() {
                 color: avgColor,
                 textShadow: "3px 3px 5px black",
                 letterSpacing: 5,
+                fontSize: width < 850 ? width / 25 : 40,
               }}
             >
               {poster.title ? poster.title : poster.name}
@@ -99,10 +116,11 @@ function Home() {
               className="poster_name"
               style={{
                 color: avgColor,
-                fontSize: width < 850 ? width / 40 : 20,
+                fontSize: width < 1000 ? width / 60 : 20,
                 letterSpacing: 2,
                 textAlign: "left",
                 textShadow: "2px 2px 5px black",
+                height: width / 100,
               }}
             >
               {poster.title ? poster.title : poster.name}
@@ -140,11 +158,50 @@ function Home() {
                 Play
               </a>
             </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                padding: width / 120,
+                borderRadius: 10,
+                backgroundColor: "white",
+                paddingInline: width / 60,
+                marginLeft: 10,
+              }}
+            >
+              <FiInfo
+                color={avgColor === "white" ? Colors.primary : avgColor}
+                //  size={24}
+              />
+              <a
+                style={{
+                  fontFamily: "Quicksand",
+                  fontSize: width < 1000 ? width / 60 : 18,
+                  fontWeight: "bold",
+                  marginLeft: 10,
+                  color: avgColor === "white" ? Colors.primary : avgColor,
+                }}
+              >
+                More info
+              </a>
+            </div>
           </div>
         </div>
       </div>
-      <Category fetchUrl={requests.fetchTrending} title="Trending" />
-      <Category fetchUrl={requests.fetchTrending} title="Trending" />
+      <Category
+        fetchUrl={requests.fetchAction}
+        title="Action Movies"
+        marginTop={width < 850 ? -(width / 20) : -(width / 6)}
+      />
+      <Category fetchUrl={requests.fetchAnimation} title="Cartoons" />
+
+      <Category
+        fetchUrl={requests.fetchTrending}
+        title="Trending"
+        categoryType="poster"
+      />
+      <Category fetchUrl={requests.fetchAdventure} title="Adventure" />
+      <Category fetchUrl={requests.fetchHorror} title="Horror Movies" />
     </div>
   );
 }

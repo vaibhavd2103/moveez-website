@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./TopTab.css";
 import { AiFillHome } from "react-icons/ai";
 import {
@@ -9,12 +9,17 @@ import {
 import { FiSearch } from "react-icons/fi";
 import { Colors, useWindowDimensions } from "../constants/constants";
 
-function TopTab() {
+function TopTab({ headerColor }) {
   const [profileHover, setProfileHover] = useState(false);
   const { width, height } = useWindowDimensions();
   return (
     <>
-      <div className="top_tab_container">
+      <div
+        className="top_tab_container"
+        style={{
+          backgroundImage: headerColor,
+        }}
+      >
         <img src={require("../assets/MOVEEZ.png")} className="logo" />
         {width < 850 ? (
           <div className="category_container">
