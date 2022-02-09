@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import instance from "../axios/axios";
 import { imageUrl, useWindowDimensions } from "../constants/constants";
 import "./Category.css";
 
 function Category({ title, fetchUrl, marginTop, categoryType }) {
+  const navigate = useNavigate();
   const { width, height } = useWindowDimensions();
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
@@ -52,15 +54,18 @@ function Category({ title, fetchUrl, marginTop, categoryType }) {
           <div
             className="movies_container"
             style={{
-              padding: width < 850 ? width / 100 : 15,
-              //     paddingTop: 40,
-              //     paddingBottom: 40,
+              paddingLeft: width < 850 ? width / 100 : 15,
+              paddingTop: 40,
+              paddingBottom: 60,
             }}
           >
             {movies.map((item) => {
               return (
                 <div
                   key={item.id}
+                  onClick={() => {
+                    navigate("/movie", { state: { id: item.id } });
+                  }}
                   className="movie_poster_div"
                   onMouseOver={() => {
                     setHover(item.id);
@@ -114,13 +119,20 @@ function Category({ title, fetchUrl, marginTop, categoryType }) {
           )}
           <div
             className="movies_container"
-            style={{ padding: width < 850 ? width / 100 : 15 }}
+            style={{
+              paddingLeft: width < 850 ? width / 100 : 15,
+              paddingTop: 10,
+              paddingBottom: 50,
+            }}
           >
             {movies.map((item) => {
               return (
                 <div
                   className="movie_div"
                   key={item.id}
+                  onClick={() => {
+                    navigate("/movie", { state: { id: item.id } });
+                  }}
                   className="movie_poster_div"
                   onMouseOver={() => {
                     setHover(item.id);

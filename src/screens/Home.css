@@ -39,7 +39,7 @@
 .poster_fade {
   width: calc(100vw);
   height: calc(100vw / 5);
-  background-image: linear-gradient(transparent, #0b0b0b);
+  background-image: linear-gradient(transparent, #0b0b0baa, #0b0b0b);
   position: relative;
   bottom: calc(100vw / 5);
 }

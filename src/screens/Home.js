@@ -19,20 +19,20 @@ function Home() {
   const [images, setImages] = useState([]);
   const [logo, setLogo] = useState("");
 
-  const [header, setHeader] = useState(
-    "linear-gradient(#0b0b0b, #0b0b0baa, transparent)"
-  );
-  const listenScrollEvent = (event) => {
-    if (window.scrollY < 400) {
-      return setHeader("linear-gradient(#0b0b0b, #0b0b0baa, transparent)");
-    } else if (window.scrollY > 350) {
-      return setHeader("rgba(0,0,0,0.5)");
-    }
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", listenScrollEvent);
-    return () => window.removeEventListener("scroll", listenScrollEvent);
-  }, []);
+  //   const [header, setHeader] = useState(
+  //     "linear-gradient(#0b0b0b, #0b0b0baa, transparent)"
+  //   );
+  //   const listenScrollEvent = (event) => {
+  //     if (window.scrollY < 400) {
+  //       return setHeader("linear-gradient(#0b0b0b, #0b0b0baa, transparent)");
+  //     } else if (window.scrollY > 350) {
+  //       return setHeader("rgba(0,0,0,0.5)");
+  //     }
+  //   };
+  //   useEffect(() => {
+  //     window.addEventListener("scroll", listenScrollEvent);
+  //     return () => window.removeEventListener("scroll", listenScrollEvent);
+  //   }, []);
 
   useEffect(() => {
     setId(Math.floor(Math.random() * 20));
@@ -75,7 +75,9 @@ function Home() {
           Loading
         </h1>
       )}
-      <TopTab headerColor={header} />
+      <TopTab
+      //  headerColor={header}
+      />
       <div className="poster_container">
         {/* <div className="poster_fade_left"></div> */}
         <img
