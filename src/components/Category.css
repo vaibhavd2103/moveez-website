@@ -46,8 +46,8 @@
 }
 
 .movie_div :hover {
-  transition: transform 250ms;
   transform: scale(1.5);
+  transition: transform 250ms;
 }
 
 .category_image {
