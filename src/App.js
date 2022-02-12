@@ -7,6 +7,7 @@ import Home from "./screens/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./screens/Authentication/Login";
 import MovieDetail from "./screens/MovieDetail";
+import Movies from "./screens/Movies";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />}></Route>
           <Route path="/home" element={<Home />}></Route>
-          <Route path="/movie" element={<MovieDetail />}></Route>
+          <Route path="/movies" element={<Movies />}></Route>
+          <Route path="/moviedetails" element={<MovieDetail />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

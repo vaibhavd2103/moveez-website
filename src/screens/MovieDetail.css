@@ -20,7 +20,7 @@
 .backdrop_container {
   width: 80vw;
   display: flex;
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
   position: relative;
   justify-content: center;
   align-items: center;
@@ -44,6 +44,7 @@
   opacity: 0;
   transition-duration: 1s ease;
   transform: scale(0.9);
+  width: 0px;
 }
 
 .backdrop {
@@ -68,6 +69,7 @@
   backdrop-filter: blur(2px);
   border-radius: 10px;
   z-index: 15;
+  cursor: pointer;
 }
 
 .right_arrow {
@@ -83,6 +85,7 @@
   backdrop-filter: blur(2px);
   border-radius: 10px;
   z-index: 15;
+  cursor: pointer;
 }
 
 .movie_detail_container {
@@ -105,7 +108,7 @@
 }
 
 .backdrop_fade {
-  width: 100vw;
+  width: 80vw;
   height: calc(100% / 2);
   background-image: linear-gradient(transparent, #0b0b0bdd, #0b0b0b);
   position: absolute;
@@ -172,6 +175,7 @@
   /* height: calc(100% * 9 / 16); */
   object-fit: contain;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .similar_movie_name {
@@ -186,7 +190,7 @@
   color: white;
   font-family: Quicksand;
   text-align: left;
-  padding: 10px;
+  padding: 15px;
 }
 
 .similar_movies_title {
@@ -208,7 +212,7 @@
   color: white;
   font-family: Quicksand;
   text-align: left;
-  padding: 10px;
+  padding-left: 15px;
   font-weight: 800;
   margin-top: 10px;
 }
@@ -218,21 +222,88 @@
   overflow-x: scroll;
   padding: 10px;
   display: flex;
+  overflow-y: hidden;
 }
 
 .cast_box {
-  width: calc(100vw / 15);
+  /* width: calc(100vw / 15); */
   margin: 5px;
   transition: 250ms;
+  position: relative;
+  opacity: 0.7;
+  cursor: pointer;
 }
 
 .cast_box:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
   transition: transform 250ms;
+  opacity: 1;
 }
 
 .cast_image {
   width: calc(100vw / 15);
   object-fit: contain;
   border-radius: 5px;
+  min-width: 100px;
+  position: relative;
+}
+
+.cast_name {
+  color: white;
+  font-family: Quicksand;
+  text-align: center;
+  /* backdrop-filter: blur(5px); */
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.collection_container {
+  width: 100vw;
+  display: flex;
+  padding: 10px;
+  position: relative;
+}
+
+.collection_image {
+  width: 72vw;
+  object-fit: contain;
+  border-radius: 10px;
+  position: relative;
+}
+
+.collection_image_poster {
+  width: 27vw;
+  object-fit: contain;
+  border-radius: 10px;
+  position: relative;
+}
+
+.collection_name {
+  font-family: Staatliches;
+  color: white;
+  letter-spacing: 3px;
+  position: absolute;
+  left: 10vw;
+  top: 18vw;
+  /* backdrop-filter: blur(5px); */
+  text-shadow: 5px 5px 5px black;
+  cursor: pointer;
+}
+
+.production_company_box {
+  margin: 5px;
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.production_company_image {
+  height: calc(100vw / 12);
+  object-fit: contain;
 }

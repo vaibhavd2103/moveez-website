@@ -31,6 +31,7 @@ function Category({ title, fetchUrl, marginTop, categoryType }) {
             alignItems: "flex-start",
             marginTop: marginTop ? marginTop : 0,
             zIndex: 1,
+            marginBottom: 30,
           }}
         >
           <h1
@@ -64,7 +65,7 @@ function Category({ title, fetchUrl, marginTop, categoryType }) {
                 <div
                   key={item.id}
                   onClick={() => {
-                    navigate("/movie", { state: { id: item.id } });
+                    navigate("/moviedetails", { state: { id: item.id } });
                   }}
                   className="movie_poster_div"
                   onMouseOver={() => {
@@ -97,6 +98,7 @@ function Category({ title, fetchUrl, marginTop, categoryType }) {
             alignItems: "flex-start",
             marginTop: marginTop ? marginTop : 0,
             zIndex: 1,
+            marginBottom: 30,
           }}
         >
           <h1
@@ -122,7 +124,7 @@ function Category({ title, fetchUrl, marginTop, categoryType }) {
             style={{
               paddingLeft: width < 850 ? width / 100 : 15,
               paddingTop: 10,
-              paddingBottom: 50,
+              paddingBottom: 10,
             }}
           >
             {movies.map((item) => {
@@ -131,7 +133,7 @@ function Category({ title, fetchUrl, marginTop, categoryType }) {
                   className="movie_div"
                   key={item.id}
                   onClick={() => {
-                    navigate("/movie", { state: { id: item.id } });
+                    navigate("/moviedetails", { state: { id: item.id } });
                   }}
                   className="movie_poster_div"
                   onMouseOver={() => {

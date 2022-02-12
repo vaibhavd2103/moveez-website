@@ -10,7 +10,7 @@ import { FaPlay } from "react-icons/fa";
 import { FiInfo } from "react-icons/fi";
 import { useNavigate } from "react-router";
 
-function Home() {
+function Movies() {
   const { width, height } = useWindowDimensions();
   const navigate = useNavigate();
   const [movies, setMovies] = useState([]);
@@ -203,16 +203,17 @@ function Home() {
         marginTop={width < 1000 ? -(width / 20) : -(width / 6)}
       />
       <Category fetchUrl={requests.fetchAnimation} title="Cartoons" />
-
       <Category
         fetchUrl={requests.fetchTrending}
         title="Trending"
         categoryType="poster"
       />
       <Category fetchUrl={requests.fetchAdventure} title="Adventure" />
+      <Category fetchUrl={requests.fetchRomance} title="Romantic" />
+      <Category fetchUrl={requests.fetchComedy} title="Comedy" />
       <Category fetchUrl={requests.fetchHorror} title="Horror Movies" />
     </div>
   );
 }
 
-export default Home;
+export default Movies;

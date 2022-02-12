@@ -8,8 +8,10 @@ import {
 } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
 import { Colors, useWindowDimensions } from "../constants/constants";
+import { useNavigate } from "react-router";
 
 function TopTab({ headerColor }) {
+  const navigate = useNavigate();
   const [profileHover, setProfileHover] = useState(false);
   const { width, height } = useWindowDimensions();
   return (
@@ -51,13 +53,25 @@ function TopTab({ headerColor }) {
           <div className="category_container">
             <a
               className="category_name"
-              style={{ fontSize: width < 850 ? width / 45 : 16 }}
+              style={{
+                fontSize: width < 850 ? width / 45 : 16,
+                //  border: "solid 1px white",
+                //  borderWidth: 0,
+                //  borderBottomWidth: 2,
+                //  padding: 10,
+              }}
+              onClick={() => {
+                navigate("/home");
+              }}
             >
               Home
             </a>
             <a
               className="category_name"
               style={{ fontSize: width < 850 ? width / 45 : 16 }}
+              onClick={() => {
+                navigate("/movies");
+              }}
             >
               Movies
             </a>
