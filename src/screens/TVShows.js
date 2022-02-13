@@ -51,7 +51,7 @@ function TVShows() {
       const filteredLogo = posterImages.data.logos.filter(
         (item) => item.iso_639_1 === "en"
       );
-      //  console.log(movies.data.results[id].name, movies.data.results[id]);
+      console.log(movies.data.results[id].name, movies.data.results[id]);
       //  console.log(posterImages.data);
       //  console.log(poster.data);
 
@@ -155,7 +155,7 @@ function TVShows() {
           >
             {poster.overview}
           </a>
-          <div className="buttons_container">
+          <div className="buttons_container" style={{ marginTop: width / 100 }}>
             <div
               style={{
                 display: "flex",
@@ -165,6 +165,7 @@ function TVShows() {
                 backgroundColor: avgColor,
                 paddingInline: width / 60,
               }}
+              className="button"
             >
               <FaPlay />
               <a
@@ -179,15 +180,15 @@ function TVShows() {
               </a>
             </div>
             <div
+              className="button"
               style={{
                 display: "flex",
                 alignItems: "center",
                 padding: width / 120,
                 borderRadius: 10,
-                backgroundColor: "white",
+                backgroundColor: "rgba(0,0,0,0.5)",
                 paddingInline: width / 60,
                 marginLeft: 10,
-                cursor: "pointer",
               }}
               onClick={() => {
                 navigate("/tvdetails", { state: { id: poster.id } });

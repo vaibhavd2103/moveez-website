@@ -150,7 +150,7 @@ function Movies() {
           >
             {poster.overview}
           </a>
-          <div className="buttons_container">
+          <div className="buttons_container" style={{ marginTop: width / 100 }}>
             <div
               style={{
                 display: "flex",

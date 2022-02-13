@@ -95,6 +95,7 @@
 .buttons_container {
   display: flex;
   align-items: center;
+  transition: 250ms;
 }
 
 .page_type {
@@ -105,4 +106,14 @@
   right: 100px;
   top: 100px;
   text-shadow: 3px 3px 5px black;
+}
+
+.button {
+  transition: 250ms;
+  cursor: pointer;
+}
+
+.buttons_container > div :hover {
+  transform: scale(1.1);
+  transition: transform 250ms;
 }
