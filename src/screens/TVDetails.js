@@ -18,10 +18,13 @@ function TVDetails(props) {
   const [similar, setSimilar] = useState([]);
   const [cast, setCast] = useState([]);
   const [castHover, setCastHover] = useState("");
+  const [seasons, setSeasons] = useState([]);
+  const [activeSeason, setActiveSeason] = useState({});
+  const [activeEpisode, setActiveEpisode] = useState({});
 
   const fetchDetails = async (id) => {
     const response = await instance.get(`/tv/${id}?api_key=${API_KEY}`);
-    console.log(response.data);
+    //     console.log(response.data);
     const images = await instance.get(`/tv/${id}/images?api_key=${API_KEY}`);
     //  console.log(images.data);
     const filteredLogo = images.data.logos.filter(
@@ -29,12 +32,9 @@ function TVDetails(props) {
     );
     const similar = await instance.get(`/tv/${id}/similar?api_key=${API_KEY}`);
     const credits = await instance.get(`/tv/${id}/credits?api_key=${API_KEY}`);
-    //     const screened_theatrically = await instance.get(
-    //       `/tv/${id}/screened_theatrically?api_key=${API_KEY}`
-    //     );
-    //     console.log(screened_theatrically);
     //     console.log(credits.data);
     setCast(credits.data.cast);
+    setSeasons(response.data.seasons);
     //  console.log(similar.data);
     setSimilar(similar.data.results);
     setImages(images.data.backdrops);
@@ -250,6 +250,202 @@ function TVDetails(props) {
           }}
           className="detail_category"
         >
+          Seasons
+        </a>
+        <div className="seasons_container">
+          {seasons.map((item) => {
+            return (
+              <>
+                <div
+                  key={item.id}
+                  className="season_box"
+                  onClick={async () => {
+                    setLoading(true);
+                    const seasonInfo = await instance.get(
+                      `/tv/${id}/season/${item.season_number}?api_key=${API_KEY}`
+                    );
+                    console.log(seasonInfo.data);
+                    setActiveSeason(seasonInfo.data);
+                    setLoading(false);
+                  }}
+                >
+                  <img
+                    src={`${imageUrl}${item.poster_path}`}
+                    className="season_poster"
+                  />
+                  {activeSeason.name === item.name ? (
+                    <div className="active_season_box">
+                      <a
+                        className="active_season"
+                        style={{
+                          fontSize: width < 1000 ? 18 : 24,
+                        }}
+                      >
+                        {item.name}
+                      </a>
+                    </div>
+                  ) : null}
+                </div>
+              </>
+            );
+          })}
+        </div>
+        {activeSeason.name !== undefined ? (
+          <div className="season_info_container">
+            <a
+              className="season_overview"
+              style={{
+                fontSize: width < 1000 ? width / 45 : 24,
+                fontWeight: "bold",
+              }}
+            >
+              {activeSeason.name} Episodes
+            </a>
+            <a
+              className="season_overview"
+              style={{
+                fontSize: width < 1000 ? width / 60 : 18,
+                opacity: 0.7,
+              }}
+            >
+              {activeSeason.overview}
+            </a>
+            {loading ? (
+              <div>
+                <a className="loading">Loading...</a>
+              </div>
+            ) : (
+              <div className="episodes_container">
+                {activeSeason && activeSeason.episodes
+                  ? activeSeason.episodes.map((item) => {
+                      return (
+                        <div
+                          className="episode_box"
+                          key={item.id}
+                          onClick={async () => {
+                            setLoading(true);
+                            const response = await instance.get(
+                              `/tv/${id}/season/${item.season_number}/episode/${item.episode_number}?api_key=${API_KEY}`
+                            );
+                            console.log(response.data);
+                            setActiveEpisode(response.data);
+                            setLoading(false);
+                          }}
+                        >
+                          <img
+                            src={`${imageUrl}${item.still_path}`}
+                            className="episode_image"
+                          />
+                        </div>
+                      );
+                    })
+                  : null}
+              </div>
+            )}
+          </div>
+        ) : null}
+        {activeEpisode &&
+          activeEpisode.episode_number &&
+          activeEpisode.still_path && (
+            <>
+              <a
+                style={{
+                  fontSize: width < 1000 ? width / 45 : 24,
+                  marginTop: 0,
+                }}
+                className="detail_category"
+              >
+                Episode {activeEpisode.episode_number}{" "}
+                <span style={{ color: Colors.yellow }}>
+                  {activeEpisode.name}
+                </span>
+              </a>
+              {activeEpisode && activeEpisode.still_path && (
+                <div className="active_episode_container">
+                  <img
+                    src={`${imageUrl}${activeEpisode.still_path}`}
+                    className="active_episode_image"
+                  />
+                  <div className="active_episode_details_container">
+                    <a
+                      className="overview"
+                      style={{ fontSize: width < 1000 ? width / 60 : 17 }}
+                    >
+                      Crew
+                    </a>
+                    <div className="guest_stars_container">
+                      {activeEpisode && activeEpisode.crew
+                        ? activeEpisode.crew.map((item) => {
+                            if (item && item.profile_path) {
+                              return (
+                                <div
+                                //    className="guest_box"
+                                >
+                                  <a
+                                    className="overview"
+                                    style={{
+                                      fontSize: width < 1000 ? width / 60 : 17,
+                                      margin: 0,
+                                      padding: 0,
+                                      marginRight: 5,
+                                      textAlign: "left",
+                                    }}
+                                  >
+                                    {item.name} as
+                                    <span style={{ color: Colors.yellow }}>
+                                      {"\n"}
+                                      {item.job}
+                                    </span>
+                                  </a>
+                                </div>
+                              );
+                            }
+                          })
+                        : null}
+                    </div>
+                    <a
+                      className="overview"
+                      style={{ fontSize: width < 1000 ? width / 60 : 17 }}
+                    >
+                      Guest Stars
+                    </a>
+                    <div className="guest_stars_container">
+                      {activeEpisode && activeEpisode.guest_stars
+                        ? activeEpisode.guest_stars.map((item) => {
+                            if (item && item.profile_path) {
+                              return (
+                                <div className="guest_box">
+                                  <img
+                                    src={`${imageUrl}${item.profile_path}`}
+                                    className="cast_image"
+                                  />
+                                </div>
+                              );
+                            }
+                          })
+                        : null}
+                    </div>
+                  </div>
+                </div>
+              )}
+              <a
+                className="season_overview"
+                style={{
+                  opacity: 0.7,
+                  marginTop: 0,
+                }}
+              >
+                {activeEpisode.overview}
+              </a>
+            </>
+          )}
+        <a
+          style={{
+            fontSize: width < 1000 ? width / 45 : 24,
+            //   color: Colors.primary,
+          }}
+          className="detail_category"
+        >
           Cast
         </a>
         <div className="cast_container">
@@ -281,20 +477,6 @@ function TVDetails(props) {
             );
           })}
         </div>
-        {/* <a
-          style={{
-            fontSize: width < 1000 ? width / 45 : 24,
-            //   color: Colors.primary,
-          }}
-          className="detail_category"
-        >
-          Belongs to Collection{" "}
-          {detail &&
-          detail.belongs_to_collection &&
-          detail.belongs_to_collection.backdrop_path
-            ? null
-            : "(Unknown)"}
-        </a> */}
         {detail &&
         detail.belongs_to_collection &&
         detail.belongs_to_collection.backdrop_path ? (

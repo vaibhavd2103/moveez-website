@@ -51,7 +51,7 @@ function TVShows() {
       const filteredLogo = posterImages.data.logos.filter(
         (item) => item.iso_639_1 === "en"
       );
-      console.log(movies.data.results[id].name, movies.data.results[id]);
+      //  console.log(movies.data.results[id].name, movies.data.results[id]);
       //  console.log(posterImages.data);
       //  console.log(poster.data);
 
@@ -118,7 +118,7 @@ function TVShows() {
               }}
             />
           ) : (
-            <h1
+            <a
               className="poster_name"
               style={{
                 color: avgColor,
@@ -128,24 +128,8 @@ function TVShows() {
               }}
             >
               {poster.title ? poster.title : poster.name}
-            </h1>
+            </a>
           )}
-          {logo && logo.file_path ? (
-            <h1
-              className="poster_name"
-              style={{
-                color: avgColor,
-                fontSize: width < 1200 ? width / 60 : 20,
-                letterSpacing: 2,
-                textAlign: "left",
-                textShadow: "2px 2px 5px black",
-                height: width / 100,
-                overflow: "visible",
-              }}
-            >
-              {poster.title ? poster.title : poster.name}
-            </h1>
-          ) : null}
           <a
             className="poster_overview"
             style={{

@@ -113,7 +113,7 @@ function Movies() {
               }}
             />
           ) : (
-            <h1
+            <a
               className="poster_name"
               style={{
                 color: avgColor,
@@ -123,24 +123,9 @@ function Movies() {
               }}
             >
               {poster.title ? poster.title : poster.name}
-            </h1>
+            </a>
           )}
-          {logo && logo.file_path ? (
-            <h1
-              className="poster_name"
-              style={{
-                color: avgColor,
-                fontSize: width < 1000 ? width / 60 : 20,
-                letterSpacing: 2,
-                textAlign: "left",
-                textShadow: "2px 2px 5px black",
-                height: width / 100,
-                overflow: "visible",
-              }}
-            >
-              {poster.title ? poster.title : poster.name}
-            </h1>
-          ) : null}
+
           <a
             className="poster_overview"
             style={{
