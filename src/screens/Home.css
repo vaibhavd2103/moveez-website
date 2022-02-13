@@ -89,10 +89,20 @@
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  margin-top: 10px;
 }
 
 .buttons_container {
   display: flex;
   align-items: center;
-  margin-top: 20px;
+}
+
+.page_type {
+  position: absolute;
+  font-family: Quicksand;
+  color: white;
+  font-weight: bold;
+  right: 100px;
+  top: 100px;
+  text-shadow: 3px 3px 5px black;
 }

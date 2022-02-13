@@ -78,12 +78,18 @@ function TopTab({ headerColor }) {
             <a
               className="category_name"
               style={{ fontSize: width < 850 ? width / 45 : 16 }}
+              onClick={() => {
+                navigate("/tvshows");
+              }}
             >
               Tv
             </a>
             <a
               className="category_name"
               style={{ fontSize: width < 850 ? width / 45 : 16 }}
+              onClick={() => {
+                navigate("/upcoming");
+              }}
             >
               Upcoming
             </a>

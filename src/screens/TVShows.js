@@ -9,8 +9,9 @@ import Category from "../components/Category";
 import { FaPlay } from "react-icons/fa";
 import { FiInfo } from "react-icons/fi";
 import { useNavigate } from "react-router";
+import TVCategory from "../components/TVCategory";
 
-function Movies() {
+function TVShows() {
   const { width, height } = useWindowDimensions();
   const navigate = useNavigate();
   const [movies, setMovies] = useState([]);
@@ -39,18 +40,22 @@ function Movies() {
   useEffect(() => {
     setId(Math.floor(Math.random() * 20));
     const fetchMovies = async () => {
-      const movies = await instance.get(requests.fetchScience);
+      const movies = await instance.get(requests.tvAdventure);
       //  setLoading(false);
       const poster = await instance.get(
-        `/movie/${movies.data.results[id].id}?api_key=${API_KEY}`
+        `/tv/${movies.data.results[id].id}?api_key=${API_KEY}`
       );
       const posterImages = await instance.get(
-        `/movie/${movies.data.results[id].id}/images?api_key=${API_KEY}`
+        `/tv/${movies.data.results[id].id}/images?api_key=${API_KEY}`
       );
+      const filteredLogo = posterImages.data.logos.filter(
+        (item) => item.iso_639_1 === "en"
+      );
+      //  console.log(movies.data.results[id].name, movies.data.results[id]);
       //  console.log(posterImages.data);
       //  console.log(poster.data);
 
-      setLogo(posterImages.data.logos[0]);
+      setLogo(filteredLogo[0]);
       setMovies(movies.data.results);
       setPoster(movies.data.results[id]);
       setLoading(false);
@@ -90,7 +95,7 @@ function Movies() {
             top: width / 10,
           }}
         >
-          Movies
+          TV Shows
         </a>
         <img
           src={`${imageUrl}${poster.backdrop_path}`}
@@ -130,7 +135,7 @@ function Movies() {
               className="poster_name"
               style={{
                 color: avgColor,
-                fontSize: width < 1000 ? width / 60 : 20,
+                fontSize: width < 1200 ? width / 60 : 20,
                 letterSpacing: 2,
                 textAlign: "left",
                 textShadow: "2px 2px 5px black",
@@ -185,7 +190,7 @@ function Movies() {
                 cursor: "pointer",
               }}
               onClick={() => {
-                navigate("/moviedetails", { state: { id: poster.id } });
+                navigate("/tvdetails", { state: { id: poster.id } });
               }}
             >
               <FiInfo
@@ -207,34 +212,30 @@ function Movies() {
           </div>
         </div>
       </div>
-      <Category
-        fetchUrl={requests.fetchAction}
-        title="Action Movies"
+      <TVCategory
+        fetchUrl={requests.tvAdventure}
+        title="Adventure"
         marginTop={width < 1000 ? -(width / 20) : -(width / 6)}
       />
-      <Category fetchUrl={requests.fetchAnimation} title="Cartoons" />
-      <Category
-        fetchUrl={requests.fetchTrending}
-        title="Trending"
+      <TVCategory
+        fetchUrl={requests.tvComedy}
+        title="Shows to make you laugh"
         categoryType="poster"
       />
-      <Category fetchUrl={requests.fetchAdventure} title="Adventure" />
-      <Category fetchUrl={requests.fetchRomance} title="Romantic" />
-      <Category
-        fetchUrl={requests.fetchComedy}
-        title="Comedy"
+      <TVCategory
+        fetchUrl={requests.tvAnimation}
+        title="Animation got you like"
+      />
+      <TVCategory fetchUrl={requests.tvScience} title="Sci-Fi Shows" />
+      <TVCategory
+        fetchUrl={requests.tvReality}
+        title="Reality Shows"
         categoryType="poster"
       />
-      <Category fetchUrl={requests.fetchHorror} title="Horror Movies" />
-      <Category fetchUrl={requests.fetchFamily} title="Family Time" />
-      <Category
-        fetchUrl={requests.fetchHistory}
-        title="Historical Movies"
-        categoryType="poster"
-      />
-      <Category fetchUrl={requests.fetchScience} title="Sci-Fi Movies" />
+      <TVCategory fetchUrl={requests.tvKids} title="Kids won't miss" />
+      <TVCategory fetchUrl={requests.tvCrime} title="Crime Stories" />
     </div>
   );
 }
 
-export default Movies;
+export default TVShows;

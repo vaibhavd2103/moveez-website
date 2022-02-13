@@ -9,6 +9,7 @@ import Category from "../components/Category";
 import { FaPlay } from "react-icons/fa";
 import { FiInfo } from "react-icons/fi";
 import { useNavigate } from "react-router";
+import TVCategory from "../components/TVCategory";
 
 function Home() {
   const { width, height } = useWindowDimensions();
@@ -20,6 +21,7 @@ function Home() {
   const [poster, setPoster] = useState({});
   const [images, setImages] = useState([]);
   const [logo, setLogo] = useState("");
+  const [TVlogo, setTVlogo] = useState("");
 
   //   const [header, setHeader] = useState(
   //     "linear-gradient(#0b0b0b, #0b0b0baa, transparent)"
@@ -39,7 +41,7 @@ function Home() {
   useEffect(() => {
     setId(Math.floor(Math.random() * 20));
     const fetchMovies = async () => {
-      const movies = await instance.get(requests.fetchTrending);
+      const movies = await instance.get(requests.fetchAction);
       //  setLoading(false);
       const poster = await instance.get(
         `/movie/${movies.data.results[id].id}?api_key=${API_KEY}`
@@ -47,10 +49,19 @@ function Home() {
       const posterImages = await instance.get(
         `/movie/${movies.data.results[id].id}/images?api_key=${API_KEY}`
       );
-      //  console.log(posterImages.data);
-      //  console.log(poster.data);
-
-      setLogo(posterImages.data.logos[0]);
+      const filteredLogo = posterImages.data.logos.filter(
+        (item) => item.iso_639_1 === "en"
+      );
+      //  const tvPosterLogo = await instance.get(
+      //    `/tv/${movies.data.results[id].id}/images?api_key=${API_KEY}`
+      //  );
+      //  const filteredTVLogo = tvPosterLogo.data.logos.filter(
+      //    (item) => item.iso_639_1 === "en"
+      //  );
+      //  //  console.log(posterImages.data);
+      //  //  console.log(poster.data);
+      //  setTVlogo(filteredTVLogo[0]);
+      setLogo(filteredLogo[0]);
       setMovies(movies.data.results);
       setPoster(movies.data.results[id]);
       setLoading(false);
@@ -102,8 +113,17 @@ function Home() {
                 maxHeight: width / 3 / 5,
               }}
             />
+          ) : TVlogo && TVlogo.file_path ? (
+            <img
+              src={`${imageUrl}${logo.file_path}`}
+              style={{
+                width: width / 3 - 30,
+                objectFit: "contain",
+                maxHeight: width / 3 / 5,
+              }}
+            />
           ) : (
-            <h1
+            <a
               className="poster_name"
               style={{
                 color: avgColor,
@@ -113,24 +133,24 @@ function Home() {
               }}
             >
               {poster.title ? poster.title : poster.name}
-            </h1>
+            </a>
           )}
-          {logo && logo.file_path ? (
+          {/* {logo && logo.file_path ? (
             <h1
               className="poster_name"
               style={{
                 color: avgColor,
-                fontSize: width < 1000 ? width / 60 : 20,
+                fontSize: width < 1200 ? width / 60 : 20,
                 letterSpacing: 2,
                 textAlign: "left",
                 textShadow: "2px 2px 5px black",
                 height: width / 100,
-                overflow: "visible",
+                //  overflow: "visible",
               }}
             >
               {poster.title ? poster.title : poster.name}
             </h1>
-          ) : null}
+          ) : null} */}
           <a
             className="poster_overview"
             style={{
@@ -140,7 +160,7 @@ function Home() {
           >
             {poster.overview}
           </a>
-          <div className="buttons_container">
+          <div className="buttons_container" style={{ marginTop: width / 100 }}>
             <div
               style={{
                 display: "flex",
@@ -202,14 +222,25 @@ function Home() {
         title="Action Movies"
         marginTop={width < 1000 ? -(width / 20) : -(width / 6)}
       />
+      <TVCategory
+        fetchUrl={requests.tvComedy}
+        title="Shows to make you laugh"
+        categoryType="poster"
+      />
       <Category fetchUrl={requests.fetchAnimation} title="Cartoons" />
-
+      <TVCategory fetchUrl={requests.tvScience} title="Sci-Fi Shows" />
       <Category
         fetchUrl={requests.fetchTrending}
         title="Trending"
         categoryType="poster"
       />
+      <TVCategory fetchUrl={requests.tvReality} title="Reality Shows" />
       <Category fetchUrl={requests.fetchAdventure} title="Adventure" />
+      <TVCategory
+        fetchUrl={requests.tvKids}
+        title="Kids won't miss"
+        categoryType="poster"
+      />
       <Category fetchUrl={requests.fetchHorror} title="Horror Movies" />
     </div>
   );

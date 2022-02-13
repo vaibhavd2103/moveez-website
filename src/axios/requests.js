@@ -21,6 +21,21 @@ const requests = {
   fetchThriller: `/discover/movie?api_key=${API_KEY}&with_genres=53`,
   fetchNetflixOriginals: `/discover/movie?api_key=${API_KEY}&with_genres=213`,
   fetchMovie: `/movie/429617?api_key=${API_KEY}`,
+
+  tvAdventure: `/discover/tv?api_key=${API_KEY}&with_genres=10759`,
+  tvAnimation: `/discover/tv?api_key=${API_KEY}&with_genres=16`,
+  tvComedy: `/discover/tv?api_key=${API_KEY}&with_genres=35`,
+  tvCrime: `/discover/tv?api_key=${API_KEY}&with_genres=80`,
+  tvDocumentary: `/discover/tv?api_key=${API_KEY}&with_genres=99`,
+  tvDrama: `/discover/tv?api_key=${API_KEY}&with_genres=18`,
+  tvFamily: `/discover/tv?api_key=${API_KEY}&with_genres=10751`,
+  tvKids: `/discover/tv?api_key=${API_KEY}&with_genres=10762`,
+  tvHistory: `/discover/tv?api_key=${API_KEY}&with_genres=36`,
+  tvNews: `/discover/tv?api_key=${API_KEY}&with_genres=10763`,
+  tvTalk: `/discover/tv?api_key=${API_KEY}&with_genres=10767`,
+  tvRomance: `/discover/tv?api_key=${API_KEY}&with_genres=10749`,
+  tvScience: `/discover/tv?api_key=${API_KEY}&with_genres=10765`,
+  tvReality: `/discover/tv?api_key=${API_KEY}&with_genres=10764`,
 };
 
 export { requests };
