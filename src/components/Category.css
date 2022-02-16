@@ -26,10 +26,9 @@
 }
 
 .movie_poster_div :hover {
-  transition: transform 250ms;
-  transform: scale(1.2, 1.2);
-  transform: translateZ(100);
+  transform: scale(1.2);
   /* z-index: 555555 !important; */
+  transition: transform 250ms;
 }
 
 .category_poster_image {
