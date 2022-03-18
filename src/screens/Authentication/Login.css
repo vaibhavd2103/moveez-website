@@ -1,0 +1,111 @@
+.login_page_container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  animation-name: fadeInAll;
+  animation-duration: 1s;
+}
+
+.image {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0.3;
+}
+
+.login_container {
+  padding: 20px;
+  padding-inline: 40px;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2px);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.login_text {
+  color: white;
+  animation-name: slideRight;
+  animation-duration: 1000s;
+  animation-delay: 1s;
+  opacity: 0;
+}
+
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  0.1% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.email_input {
+  margin-top: 20px;
+  height: 50px;
+  width: 30vw;
+  border-radius: 5px;
+  background-color: #333333;
+  border: 0;
+  padding-left: 20px;
+  color: white;
+  font-size: 20px;
+}
+
+.email_input::-webkit-input-placeholder {
+  color: lightgrey;
+  opacity: 0.5;
+  font-size: 20px;
+}
+
+.login_button {
+  background-color: #6e01c0aa;
+  padding: 15px;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 40px;
+  transition: 250ms;
+}
+
+.login_button:hover {
+  background-color: #6e01c0;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 5px; */
+  margin-right: 5px;
+  border: solid 1px;
+  border-radius: 5px;
+  height: 20px;
+  width: 20px;
+}

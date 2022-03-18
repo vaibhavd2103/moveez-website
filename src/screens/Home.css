@@ -98,6 +98,30 @@
   transition: 250ms;
 }
 
+.play_button {
+  display: flex;
+  transition: 250ms;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.play_button:hover {
+  opacity: 1;
+}
+
+.info_button {
+  display: flex;
+  transition: 250ms;
+  opacity: 0.7;
+  cursor: pointer;
+  background-color: #000;
+}
+
+.info_button:hover {
+  opacity: 1;
+  background-color: #0b0b0b66;
+}
+
 .page_type {
   position: absolute;
   font-family: Quicksand;
@@ -106,14 +130,4 @@
   right: 100px;
   top: 100px;
   text-shadow: 3px 3px 5px black;
-}
-
-.button {
-  transition: 250ms;
-  cursor: pointer;
-}
-
-.buttons_container > div :hover {
-  transform: scale(1.1);
-  transition: transform 250ms;
 }

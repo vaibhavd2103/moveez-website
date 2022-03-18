@@ -2,6 +2,7 @@
   text-align: center;
   margin: 0;
   padding: 0;
+  background-color: black;
 }
 
 .App-logo {
@@ -38,4 +39,27 @@
   100% {
     transform: translateY(0px);
   }
+}
+@keyframes fadeInAll {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+div {
+  transition: 250ms;
+  /* animation-name: fadeInAll;
+  animation-duration: 1s; */
+  /* animation-delay: 1s; */
+}
+a {
+  transition: 250ms;
+  font-family: Quicksand;
+  color: white;
 }

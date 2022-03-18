@@ -135,7 +135,6 @@ function TVCategory({ title, fetchUrl, marginTop, categoryType }) {
                   onClick={() => {
                     navigate("/tvdetails", { state: { id: item.id } });
                   }}
-                  className="movie_poster_div"
                   onMouseOver={() => {
                     setHover(item.id);
                   }}

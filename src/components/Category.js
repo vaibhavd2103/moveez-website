@@ -23,7 +23,11 @@ function Category({ title, fetchUrl, marginTop, categoryType }) {
 
   return (
     <>
-      {categoryType === "poster" ? (
+      {loading ? (
+        <h1 style={{ fontFamily: "Quicksand", color: "white", fontSize: 30 }}>
+          Loading...
+        </h1>
+      ) : categoryType === "poster" ? (
         <div
           className="category_container"
           style={{
@@ -45,13 +49,6 @@ function Category({ title, fetchUrl, marginTop, categoryType }) {
           >
             {title}
           </h1>
-          {loading && (
-            <h1
-              style={{ fontFamily: "Quicksand", color: "white", fontSize: 30 }}
-            >
-              Loading...
-            </h1>
-          )}
           <div
             className="movies_container"
             style={{
@@ -135,7 +132,6 @@ function Category({ title, fetchUrl, marginTop, categoryType }) {
                   onClick={() => {
                     navigate("/moviedetails", { state: { id: item.id } });
                   }}
-                  className="movie_poster_div"
                   onMouseOver={() => {
                     setHover(item.id);
                   }}

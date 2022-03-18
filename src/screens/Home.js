@@ -41,7 +41,7 @@ function Home() {
   useEffect(() => {
     setId(Math.floor(Math.random() * 20));
     const fetchMovies = async () => {
-      const movies = await instance.get(requests.fetchAction);
+      const movies = await instance.get(requests.fetchTrending);
       //  setLoading(false);
       const poster = await instance.get(
         `/movie/${movies.data.results[id].id}?api_key=${API_KEY}`
@@ -170,6 +170,7 @@ function Home() {
                 backgroundColor: avgColor,
                 paddingInline: width / 60,
               }}
+              className="play_button"
             >
               <FaPlay />
               <a
@@ -178,6 +179,7 @@ function Home() {
                   fontSize: width < 1000 ? width / 60 : 18,
                   fontWeight: "bold",
                   marginLeft: 10,
+                  color: "black",
                 }}
               >
                 Play
@@ -189,17 +191,18 @@ function Home() {
                 alignItems: "center",
                 padding: width / 120,
                 borderRadius: 10,
-                backgroundColor: "white",
+                //  backgroundColor: "white",
                 paddingInline: width / 60,
                 marginLeft: 10,
                 cursor: "pointer",
               }}
+              className="info_button"
               onClick={() => {
                 navigate("/moviedetails", { state: { id: poster.id } });
               }}
             >
               <FiInfo
-                color={avgColor === "white" ? Colors.primary : avgColor}
+                color={avgColor === "white" ? Colors.white : avgColor}
                 //  size={24}
               />
               <a
@@ -208,7 +211,7 @@ function Home() {
                   fontSize: width < 1000 ? width / 60 : 18,
                   fontWeight: "bold",
                   marginLeft: 10,
-                  color: avgColor === "white" ? Colors.primary : avgColor,
+                  color: avgColor === "white" ? Colors.white : avgColor,
                 }}
               >
                 More info
